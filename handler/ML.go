@@ -8,9 +8,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/sjwhitworth/golearn/base"
-	"github.com/sjwhitworth/golearn/evaluation"
-	"github.com/sjwhitworth/golearn/knn"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
@@ -119,7 +116,7 @@ func ML() {
 	}
 	//Scatter plot will create png where graph will represnt
 	//relationship between the sepal length and width
-	defer ScatterPlot(sepalData, "sepal")
+	ScatterPlot(sepalData, "sepal")
 
 	//petalData will used to reprsent petal data length width.
 	petalData, err := readIrisData("iris.csv", "petal")
@@ -129,29 +126,29 @@ func ML() {
 
 	//Scatter plot will create png where graph will represnt
 	//relationship between the sepal length and width
-	defer ScatterPlot(petalData, "petal")
+	ScatterPlot(petalData, "petal")
 
-	//Initialises a new KNN classifier
-	cls := knn.NewKnnClassifier("euclidean", "linear", 2)
+	// //Initialises a new KNN classifier
+	// cls := knn.NewKnnClassifier("euclidean", "linear", 2)
 
-	rawData1, err := base.ParseCSVToInstances("iris.csv", true)
-	if err != nil {
-		panic(err)
-	}
-	//Do a training-test split
-	trainData, testData := base.InstancesTrainTestSplit(rawData1, 0.50)
-	cls.Fit(trainData)
+	// rawData1, err := base.ParseCSVToInstances("iris.csv", true)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// //Do a training-test split
+	// trainData, testData := base.InstancesTrainTestSplit(rawData1, 0.50)
+	// cls.Fit(trainData)
 
-	//Calculates the Euclidean distance and returns the most popular label
-	predictions, err := cls.Predict(testData)
-	if err != nil {
-		panic(err)
-	}
+	// //Calculates the Euclidean distance and returns the most popular label
+	// predictions, err := cls.Predict(testData)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	// Prints precision/recall metrics
-	confusionMat, err := evaluation.GetConfusionMatrix(testData, predictions)
-	if err != nil {
-		panic(fmt.Sprintf("Unable to get confusion matrix: %s", err.Error()))
-	}
-	fmt.Println(evaluation.GetSummary(confusionMat))
+	// // Prints precision/recall metrics
+	// confusionMat, err := evaluation.GetConfusionMatrix(testData, predictions)
+	// if err != nil {
+	// 	panic(fmt.Sprintf("Unable to get confusion matrix: %s", err.Error()))
+	// }
+	// fmt.Println(evaluation.GetSummary(confusionMat))
 }

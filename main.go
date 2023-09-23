@@ -9,7 +9,7 @@ import (
 func main() {
 	r := gin.Default()
 
-	r.LoadHTMLGlob("templates/*")
+	r.LoadHTMLGlob("index.html")
 
 	routes.Routes(r)
 

@@ -7,7 +7,7 @@ import (
 func FirstPage(c *gin.Context) {
 
 	ML()
-	c.HTML(200, "index.html", gin.H{"title": "Code Studio"})
+	defer c.HTML(200, "index.html", gin.H{"title": "Code Studio"})
 }
 
 func Health(c *gin.Context) {
